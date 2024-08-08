@@ -1,0 +1,1 @@
+SELECT * FROM loja.vendedor WHERE faixa_comissao <> "B"
