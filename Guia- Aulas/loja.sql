@@ -44,4 +44,3 @@ CREATE TABLE itempedido(
     FOREIGN KEY(FK_num_pedido) REFERENCES pedido(num_pedido),
     FOREIGN KEY(FK_cod_produto) REFERENCES produto(cod_produto)
 );
-
