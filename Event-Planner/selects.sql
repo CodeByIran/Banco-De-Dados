@@ -25,7 +25,7 @@ WHERE Local = 'local name';
 -- Selecionar os detalhes das propostas que foram enviadas para um evento específico
 SELECT Valor, Status, Data 
 FROM Proposta 
-WHERE FK_Id_Fornecedor = (SELECT Id_Fornecedor FROM Fornecedor WHERE Nome = 'João Oliveira');
+WHERE FK_Id_Fornecedor = (SELECT Id_Fornecedor FROM Fornecedor WHERE Nome = 'Nome do fornecedor');
 
 -- Contar o número de convidados de um evento específico
 SELECT COUNT(*) 
