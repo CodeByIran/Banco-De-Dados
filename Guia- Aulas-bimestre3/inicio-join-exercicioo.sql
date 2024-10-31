@@ -16,12 +16,13 @@ FROM disciplina d INNER JOIN alunodisciplina ad
 ON d.id =  FK_disciplina_id
 INNER JOIN aluno a 
 ON ad.FK_aluno_mat = d.id;
-
+-- -----------------------------------------------------------
 SELECT a.nome AS AlunoNome, d.nome AS NomeDisciplina
 FROM aluno a INNER JOIN alunodisciplina ad
 ON a.mat = ad.FK_aluno_mat
 INNER JOIN disciplina d 
 ON ad.FK_disciplina_id = d.id;
+
 # Liste os nomes de todos os professores e as disciplinas que eles ministram
 SELECT p.nome AS professor, d.nome AS disciplina
 FROM professor p INNER JOIN disciplina d
