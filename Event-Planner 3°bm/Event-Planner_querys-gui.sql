@@ -1,87 +1,58 @@
-CREATE DATABASE EventoDB;
-USE EventoDB;
+#Tela de Gerenciamento de Eventos
+#ista de eventos com detalhes e responsáveis:
+SELECT e.Id_Evento, e.Nome AS Nome_Evento, e.Data, e.Local,
+e.Descricao, e.Orçamento, u.Nome AS Nome_Responsavel FROM Evento e
+INNER JOIN Usuario u ON e.FK_Id_Usuario = u.Id_Usuario;
 
--- Tabela de Usuários
-CREATE TABLE Usuario (
-    Id_Usuario INT AUTO_INCREMENT PRIMARY KEY,
-    Nome VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) NOT NULL UNIQUE,
-    Cargo VARCHAR(50),
-    Empresa VARCHAR(100)
-);
 
--- Tabela de Fornecedores
-CREATE TABLE Fornecedor (
-    Id_Fornecedor INT AUTO_INCREMENT PRIMARY KEY,
-    Nome VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) NOT NULL UNIQUE,
-    Servico VARCHAR(100),
-    Disponibilidade VARCHAR(50)
-);
+# Tela de Propostas de Fornecedores
+#Propostas de fornecedores com status e valores:
+SELECT p.Id_Proposta, p.Valor, p.Status, p.Data, f.Nome AS Nome_Fornecedor,
+f.Servico AS Servico_Fornecedor FROM Proposta p
+INNER JOIN Fornecedor f ON p.FK_Id_Fornecedor = f.Id_Fornecedor;
 
--- Tabela de Propostas de Fornecedores
-CREATE TABLE Proposta (
-    Id_Proposta INT AUTO_INCREMENT PRIMARY KEY,
-    Valor DECIMAL(10, 2) NOT NULL,
-    Status VARCHAR(50),
-    Data DATE,
-    FK_Id_Fornecedor INT,
-    FOREIGN KEY (FK_Id_Fornecedor) REFERENCES Fornecedor(Id_Fornecedor)
-);
 
--- Tabela de Eventos
-CREATE TABLE Evento (
-    Id_Evento INT AUTO_INCREMENT PRIMARY KEY,
-    Nome VARCHAR(100) NOT NULL,
-    Data DATE,
-    Local VARCHAR(100),
-    Descricao TEXT,
-    Orçamento DECIMAL(10, 2),
-    FK_Id_Usuario INT, -- Usuário responsável
-    FOREIGN KEY (FK_Id_Usuario) REFERENCES Usuario(Id_Usuario)
-);
+#Tela de Tarefas do Evento
+#Tarefas associadas a um evento específico:
+SELECT t.Id_Tarefa, t.Descricao, t.Status, t.Prazo_Inicial,
+t.Prazo_Final, e.Nome AS Nome_Evento FROM Tarefa t
+INNER JOIN Evento e ON t.FK_Id_Evento = e.Id_Evento WHERE 
+e.Id_Evento = 1; # Ideia de filtro por evento específico
 
--- Tabela de Tarefas relacionadas ao Evento
-CREATE TABLE Tarefa (
-    Id_Tarefa INT AUTO_INCREMENT PRIMARY KEY,
-    Descricao TEXT,
-    Status VARCHAR(50),
-    Prazo_Inicial DATE,
-    Prazo_Final DATE,
-    FK_Id_Evento INT,
-    FOREIGN KEY (FK_Id_Evento) REFERENCES Evento(Id_Evento)
-);
 
--- Tabela de Convidados
-CREATE TABLE Convidados (
-    Id_Convidado INT AUTO_INCREMENT PRIMARY KEY,
-    Nome VARCHAR(100) NOT NULL,
-    Papel VARCHAR(50)
-);
+#Tela de Convidados do Evento
+#Lista de convidados para um evento:
+SELECT c.Id_Convidado, c.Nome AS Nome_Convidado, c.Papel,
+ e.Nome AS Nome_Evento FROM EventoConvidados ec
+INNER JOIN Evento e ON ec.FK_Evento_Id_Evento = e.Id_Evento
+INNER JOIN Convidados c ON ec.FK_Convidados_Id_Convidado = c.Id_Convidado
+WHERE e.Id_Evento = 1; #ideia de filtro por evento específico
 
--- Evento e Convidados
-CREATE TABLE EventoConvidados (
-    FK_Evento_Id_Evento INT,
-    FK_Convidados_Id_Convidado INT,
-    PRIMARY KEY(FK_Evento_Id_Evento, FK_Convidados_Id_Convidado),
-    FOREIGN KEY(FK_Evento_Id_Evento) REFERENCES Evento(Id_Evento),
-    FOREIGN KEY(FK_Convidados_Id_Convidado) REFERENCES Convidados(Id_Convidado)
-);
 
--- Usuários e Eventos (participantes de um evento)
-CREATE TABLE UsuarioEvento (
-    FK_Usuario_Id_Usuario INT,
-    FK_Evento_Id_Evento INT,
-    PRIMARY KEY(FK_Usuario_Id_Usuario, FK_Evento_Id_Evento),
-    FOREIGN KEY(FK_Usuario_Id_Usuario) REFERENCES Usuario(Id_Usuario),
-    FOREIGN KEY(FK_Evento_Id_Evento) REFERENCES Evento(Id_Evento)
-);
 
--- Usuários e Tarefas
-CREATE TABLE UsuarioTarefa (
-    FK_Usuario_Id_Usuario INT,
-    FK_Tarefa_Id_Tarefa INT,
-    PRIMARY KEY(FK_Usuario_Id_Usuario, FK_Tarefa_Id_Tarefa),
-    FOREIGN KEY(FK_Usuario_Id_Usuario) REFERENCES Usuario(Id_Usuario),
-    FOREIGN KEY(FK_Tarefa_Id_Tarefa) REFERENCES Tarefa(Id_Tarefa)
-);
+#Tela de Participação de Usuários em Eventos
+#esse select não tem tanto sentido relativamente, mas a priori, no meu sistema
+#um usuario deve ter acesso a alguns eventos abertos na aplicação... não apenas 
+#criar seus proprios! Porem não soube trazer essa tela ou lógica para meu figma.
+#Usuários participantes de eventos:
+SELECT u.Id_Usuario, u.Nome AS Nome_Usuario, e.Nome AS Nome_Evento,
+e.Data AS Data_Evento FROM UsuarioEvento ue
+INNER JOIN Usuario u ON ue.FK_Usuario_Id_Usuario = u.Id_Usuario
+INNER JOIN Evento e ON ue.FK_Evento_Id_Evento = e.Id_Evento
+WHERE e.Id_Evento = 1; #ideia de filtro por evento específico
+
+
+#Tela de Usuários Responsáveis por Tarefas
+#uma outra tela que não consegui desenvolver no meu figma mas faz sentido ter no olhar da explicação acima.
+#Usuários atribuídos a tarefas:
+SELECT u.Id_Usuario, u.Nome AS Nome_Usuario, t.Descricao AS Descricao_Tarefa, 
+t.Status AS Status_Tarefa, t.Prazo_Final FROM  UsuarioTarefa ut
+INNER JOIN Usuario u ON ut.FK_Usuario_Id_Usuario = u.Id_Usuario
+INNER JOIN Tarefa t ON ut.FK_Tarefa_Id_Tarefa = t.Id_Tarefa
+WHERE t.FK_Id_Evento = 1; #ideia de filtro por evento específico
+
+
+
+
+    
+
