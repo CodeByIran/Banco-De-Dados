@@ -2,12 +2,12 @@ CREATE DATABASE EventoDB;
 USE EventoDB;
 
 # Tabela de Usuários
-create table Usuario (
-    Id_Usuario int auto_increment primary key,
-    Nome varchar(100) not null,
-    Email varchar(100) not null unique,
-    Cargo varchar(50),
-    Empresa varchar(100)
+CREATE TABLE Usuario (
+    Id_Usuario INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Cargo VARCHAR(50),
+    Empresa VARCHAR(100)
 );
 
 # Tabela de Fornecedores
@@ -68,7 +68,7 @@ CREATE TABLE EventoConvidados (
     FOREIGN KEY(FK_Convidados_Id_Convidado) REFERENCES Convidados(Id_Convidado)
 );
 
-# Usuários e Eventos (participantes de um evento)
+# Usuários e Eventos (os participantes de um evento)
 CREATE TABLE UsuarioEvento (
     FK_Usuario_Id_Usuario INT,
     FK_Evento_Id_Evento INT,
