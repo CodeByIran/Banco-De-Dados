@@ -11,6 +11,11 @@ const Produto = database.define(
             primaryKey: true
         },
 
+        nome: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        
         tipo: {
             type: DataTypes.STRING,
             allowNull: false
@@ -20,7 +25,7 @@ const Produto = database.define(
             type: DataTypes.DECIMAL(10,2),
             allowNull: false
         },
-        
+
         descricao: {
             type: DataTypes.STRING,
             allowNull: false
