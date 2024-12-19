@@ -1,25 +1,20 @@
 const Produto = require('./model/produto');
 const database = require('./db');
+const Categoria = require("./model/categoria");
+const Detalhe = require("./model/detalhe");
+const Rotulo = require("./model/rotulo");
+const ProdutoRotulo = require("./model/produtorotulo");
+
+const setupRelacoes = require("./model/relacoes");
 
 (
     async () => {  
         try {
+            setupRelacoes();
+
             await database.sync();
-            console.log("DB sync");
-
-            const createProduct = async (nome, tipo) => {
-                const p = await Produto.create({
-                    nome: "Mouse",
-                    tipo: "Periferico",
-                    preco: 100.00,
-                    descricao: "Mouse com 3 botões e 1000 de DPI"
-                });
-                console.log('Produto criado: ', p.toJSON());
-            };
-
-            await createProduct();
-        }
-        catch (error) {
+            console.log("DB sync");   
+        }catch (error) {
             console.error("Erro!", error)
         }
     }
