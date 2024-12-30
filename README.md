@@ -19,6 +19,6 @@ As atividades aqui apresentadas incluem exercícios desenvolvidos ao longo do cu
 
 ## Autor
 **Iran Santana Batista Filho**  
-Estudante de Tecnologia da Informação - IFAL Campus Rio Largo
+Estudante de TI - IFAL Campus Rio Largo
 
 Se você tiver sugestões ou dúvidas, fique à vontade para entrar em contato!
