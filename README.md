@@ -1,6 +1,6 @@
 # BANCO-DE-DADOS
 
-Este repositório contém tarefas e práticas relacionadas ao estudo de Banco de Dados realizadas no Instituto Federal de Alagoas (IFAL), campus Rio Largo, onde curso **Tecnologia da Informação**.
+Este repositório contém tarefas e práticas relacionadas ao estudo de Banco de Dados realizadas no Instituto Federal de Alagoas (IFAL), campus Rio Largo, onde curso de **TI**.
 
 ## Descrição
 As atividades aqui apresentadas incluem exercícios desenvolvidos ao longo do curso, com o objetivo de aprimorar habilidades em modelagem de dados, criação de consultas SQL, e manipulação de bancos de dados relacionais.
