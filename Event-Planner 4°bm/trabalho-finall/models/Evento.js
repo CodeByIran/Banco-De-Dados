@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../db');
-const Usuario = require('./Usuario');
+const Usuario = require('./Usuario');  // Certifique-se de que está corretamente importado
 
 const Evento = sequelize.define('Evento', {
   Id_Evento: {
@@ -28,7 +28,7 @@ const Evento = sequelize.define('Evento', {
   timestamps: false
 });
 
-Evento.belongsTo(Usuario, { foreignKey: 'FK_Id_Usuario' });
-Usuario.hasMany(Evento, { foreignKey: 'FK_Id_Usuario' });
+Evento.belongsTo(Usuario, { foreignKey: 'FK_Id_Usuario', as: 'Usuario' });
+Usuario.hasMany(Evento, { foreignKey: 'FK_Id_Usuario', as: 'Eventos' });
 
 module.exports = Evento;

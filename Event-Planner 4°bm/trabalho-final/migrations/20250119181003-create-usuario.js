@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Usuarios', {
-      Id_Usuario: { // Corrigido para refletir o nome da coluna original
+      Id_Usuario: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -11,12 +11,12 @@ module.exports = {
       },
       Nome: {
         type: Sequelize.STRING,
-        allowNull: false // Adicionada restrição NOT NULL
+        allowNull: false 
       },
       Email: {
         type: Sequelize.STRING,
-        allowNull: false, // Adicionada restrição NOT NULL
-        unique: true // Adicionada restrição UNIQUE
+        allowNull: false,
+        unique: true 
       },
       Cargo: {
         type: Sequelize.STRING
