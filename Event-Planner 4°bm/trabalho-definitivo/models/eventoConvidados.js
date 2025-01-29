@@ -26,6 +26,9 @@ const EventoConvidados = sequelize.define('EventoConvidados', {
       name: 'evento_convidado_unique', // Nome personalizado para a constraint de unicidade
     },
   ],
+},{
+  freezeTableName: true, // Impede o Sequelize de pluralizar o nome da tabela
+  timestamps: true, // Cria as colunas createdAt e updatedAt automaticamente
 });
 
 module.exports = EventoConvidados;

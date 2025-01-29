@@ -31,6 +31,8 @@ const Evento = sequelize.define('Evento', {
     },
   },
 }, {
+  freezeTableName: true, // Impede o Sequelize de pluralizar o nome da tabela
+  timestamps: true, // Cria as colunas createdAt e updatedAt automaticamente
 });
 
 module.exports = Evento;

@@ -15,7 +15,8 @@ const Convidados = sequelize.define('Convidados', {
     type: DataTypes.STRING(50),
   },
 }, {
-
+  freezeTableName: true, // Impede o Sequelize de pluralizar o nome da tabela
+  timestamps: true, // Cria as colunas createdAt e updatedAt automaticamente
 });
 
 module.exports = Convidados;

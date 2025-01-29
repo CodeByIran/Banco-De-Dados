@@ -23,7 +23,8 @@ const Fornecedor = sequelize.define('Fornecedor', {
     type: DataTypes.STRING(50),
   },
 }, {
-  timestamps: false,
+  freezeTableName: true, // Impede o Sequelize de pluralizar o nome da tabela
+  timestamps: true, // Cria as colunas createdAt e updatedAt automaticamente
 });
 
 module.exports = Fornecedor;

@@ -27,6 +27,9 @@ const UsuarioEvento = sequelize.define('UsuarioEvento', {
       name: 'usuario_evento_unique',
     },
   ],
+},{
+  freezeTableName: true, // Impede o Sequelize de pluralizar o nome da tabela
+  timestamps: true, // Cria as colunas createdAt e updatedAt automaticamente
 });
 
 module.exports = UsuarioEvento;

@@ -22,6 +22,11 @@ const Usuario = sequelize.define('Usuario', {
   Empresa: {
     type: DataTypes.STRING,
   },
+
+},
+{
+  freezeTableName: true, // Impede o Sequelize de pluralizar o nome da tabela
+  timestamps: true, // Cria as colunas createdAt e updatedAt automaticamente
 });
 
 module.exports = Usuario;

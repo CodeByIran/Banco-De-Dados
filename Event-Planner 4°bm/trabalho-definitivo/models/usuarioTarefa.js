@@ -27,5 +27,8 @@ const UsuarioTarefa = sequelize.define('UsuarioTarefa', {
       name: 'usuario_tarefa_unique',
     },
   ],
+},{
+  freezeTableName: true, // Impede o Sequelize de pluralizar o nome da tabela
+  timestamps: true, 
 });
 module.exports = UsuarioTarefa;

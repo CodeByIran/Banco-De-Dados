@@ -7,7 +7,7 @@ const setupRelationships = require('./relationships');
     setupRelationships();
 
     // Sincronizar o banco de dados
-    await sequelize.sync({ force: true });  // o "force" pode ser false para não perder dados
+    await sequelize.sync({ force: true, alter: true });  // o "force" pode ser false para não perder dados
     console.log('Banco de dados sincronizado.');
 
     console.log('Aplicação inicializada com sucesso.');
