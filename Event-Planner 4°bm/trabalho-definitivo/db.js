@@ -10,8 +10,8 @@ const sequelize = new Sequelize(
   'iran',    // Senha do banco
 
   {
-    host: 'localhost', // Host
-    dialect: 'mysql',  // Dialeto usado
+    host: 'localhost',
+    dialect: 'mysql',  
   }
 );
 
