@@ -1,16 +1,16 @@
-const Usuario = require('./models/usuario');
-const Fornecedor = require('./models/fornecedor');
-const Proposta = require('./models/proposta');
-const Evento = require('./models/evento');
-const Tarefa = require('./models/tarefa');
-const Convidados = require('./models/convidados');
-const EventoConvidados = require('./models/eventoConvidados');
-const UsuarioEvento = require('./models/usuarioEvento');
-const UsuarioTarefa = require('./models/usuarioTarefa');
+const Usuario = require('./trabalho-definitivo/models/usuario');
+const Fornecedor = require('./trabalho-definitivo/models/fornecedor');
+const Proposta = require('./trabalho-definitivo/models/proposta');
+const Evento = require('./trabalho-definitivo/models/evento');
+const Tarefa = require('./trabalho-definitivo/models/tarefa');
+const Convidados = require('./trabalho-definitivo/models/convidados');
+const EventoConvidados = require('./trabalho-definitivo/models/eventoConvidados');
+const UsuarioEvento = require('./trabalho-definitivo/models/usuarioEvento');
+const UsuarioTarefa = require('./trabalho-definitivo/models/usuarioTarefa');
 
-const database = require('./db');
+const database = require('./trabalho-definitivo/db');
 
-const setupRelationships = require('./relationships');
+const setupRelationships = require('./trabalho-definitivo/relationships');
 
 
 (async () => {
