@@ -10,7 +10,7 @@ const UsuarioTarefa = require('./models/usuarioTarefa');
 
 
 module.exports = () => {
-  // 1:N "Proposta pertence a um Fornecedor"
+  // 1:N Proposta pertence a um Fornecedor
   Fornecedor.hasMany(Proposta, {
     foreignKey: 'FK_Id_Fornecedor',
   });
@@ -19,7 +19,7 @@ module.exports = () => {
     foreignKey: 'FK_Id_Fornecedor',
   });
 
-  // 1:N "Evento pertence a um Usuario"
+  // 1:N Evento pertence a um Usuario
   Usuario.hasMany(Evento, {
     foreignKey: 'FK_Id_Usuario',
   });
@@ -28,7 +28,7 @@ module.exports = () => {
     foreignKey: 'FK_Id_Usuario',
   });
 
-  // 1:N "Tarefa pertence a um Evento"
+  // 1:N Tarefa pertence a um Evento
   Evento.hasMany(Tarefa, {
     foreignKey: 'FK_Id_Evento',
   });
@@ -37,14 +37,14 @@ module.exports = () => {
     foreignKey: 'FK_Id_Evento',
   });
 
-  // N:M "Evento e Convidados"
+  // N:M Evento e Convidados
   EventoConvidados.belongsTo(Evento, { foreignKey: 'FK_Evento_Id_Evento' });
   EventoConvidados.belongsTo(Convidados, { foreignKey: 'FK_Convidados_Id_Convidado' });
   
   Evento.hasMany(EventoConvidados, { foreignKey: 'FK_Evento_Id_Evento' });
   Convidados.hasMany(EventoConvidados, { foreignKey: 'FK_Convidados_Id_Convidado' });
 
-  // N:M "Usuario e Evento"
+  // N:M Usuario e Evento
   Usuario.belongsToMany(Evento, {
     through: UsuarioEvento,
     foreignKey: 'FK_Usuario_Id_Usuario',
@@ -55,7 +55,7 @@ module.exports = () => {
     foreignKey: 'FK_Evento_Id_Evento',
   });
 
-  // N:M "Usuario e Tarefa"
+  // N:M Usuario e Tarefa
   Usuario.belongsToMany(Tarefa, {
     through: UsuarioTarefa,
     foreignKey: 'FK_Usuario_Id_Usuario',
